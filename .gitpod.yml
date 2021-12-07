@@ -1,10 +1,21 @@
 tasks:
-  - init: npm install
+  - name: terminal 4
+    init: npm install
     command: |
       export CLIENT_URL="$(gp url 35729)/livereload.js?snipver=1&port=443"
       { gp await-port 5000 && sleep 5 && gp preview $(gp url 5000) & } &> /dev/null
       gp open src/App.svelte
       npm run dev
+  - name: terminal 1
+    before: echo 'before script'
+    init: echo 'init script'
+    command: echo 'start script'
+  - name: teminal 2
+    init: npw install
+    command: npw run dev
+  - name: terminal 3
+    init: echo 'this is terminal 3'
+    command: echo 'hello world is terminal 3'
 ports:
   - port: 5000
     onOpen: ignore
